@@ -1,10 +1,187 @@
-// stats.js r6 - http://github.com/mrdoob/stats.js
-var Stats=function(){function s(a,g,d){var f,c,e;for(c=0;c<30;c++)for(f=0;f<73;f++)e=(f+c*74)*4,a[e]=a[e+4],a[e+1]=a[e+5],a[e+2]=a[e+6];for(c=0;c<30;c++)e=(73+c*74)*4,c<g?(a[e]=b[d].bg.r,a[e+1]=b[d].bg.g,a[e+2]=b[d].bg.b):(a[e]=b[d].fg.r,a[e+1]=b[d].fg.g,a[e+2]=b[d].fg.b)}var r=0,t=2,g,u=0,j=(new Date).getTime(),F=j,v=j,l=0,w=1E3,x=0,k,d,a,m,y,n=0,z=1E3,A=0,f,c,o,B,p=0,C=1E3,D=0,h,i,q,E,b={fps:{bg:{r:16,g:16,b:48},fg:{r:0,g:255,b:255}},ms:{bg:{r:16,g:48,b:16},fg:{r:0,g:255,b:0}},mb:{bg:{r:48,g:16,
-    b:26},fg:{r:255,g:0,b:128}}};g=document.createElement("div");g.style.cursor="pointer";g.style.width="80px";g.style.opacity="0.9";g.style.zIndex="10001";g.addEventListener("click",function(){r++;r==t&&(r=0);k.style.display="none";f.style.display="none";h.style.display="none";switch(r){case 0:k.style.display="block";break;case 1:f.style.display="block";break;case 2:h.style.display="block"}},!1);k=document.createElement("div");k.style.backgroundColor="rgb("+Math.floor(b.fps.bg.r/2)+","+Math.floor(b.fps.bg.g/
-    2)+","+Math.floor(b.fps.bg.b/2)+")";k.style.padding="2px 0px 3px 0px";g.appendChild(k);d=document.createElement("div");d.style.fontFamily="Helvetica, Arial, sans-serif";d.style.textAlign="left";d.style.fontSize="9px";d.style.color="rgb("+b.fps.fg.r+","+b.fps.fg.g+","+b.fps.fg.b+")";d.style.margin="0px 0px 1px 3px";d.innerHTML='<span style="font-weight:bold">FPS</span>';k.appendChild(d);a=document.createElement("canvas");a.width=74;a.height=30;a.style.display="block";a.style.marginLeft="3px";k.appendChild(a);
-    m=a.getContext("2d");m.fillStyle="rgb("+b.fps.bg.r+","+b.fps.bg.g+","+b.fps.bg.b+")";m.fillRect(0,0,a.width,a.height);y=m.getImageData(0,0,a.width,a.height);f=document.createElement("div");f.style.backgroundColor="rgb("+Math.floor(b.ms.bg.r/2)+","+Math.floor(b.ms.bg.g/2)+","+Math.floor(b.ms.bg.b/2)+")";f.style.padding="2px 0px 3px 0px";f.style.display="none";g.appendChild(f);c=document.createElement("div");c.style.fontFamily="Helvetica, Arial, sans-serif";c.style.textAlign="left";c.style.fontSize=
-    "9px";c.style.color="rgb("+b.ms.fg.r+","+b.ms.fg.g+","+b.ms.fg.b+")";c.style.margin="0px 0px 1px 3px";c.innerHTML='<span style="font-weight:bold">MS</span>';f.appendChild(c);a=document.createElement("canvas");a.width=74;a.height=30;a.style.display="block";a.style.marginLeft="3px";f.appendChild(a);o=a.getContext("2d");o.fillStyle="rgb("+b.ms.bg.r+","+b.ms.bg.g+","+b.ms.bg.b+")";o.fillRect(0,0,a.width,a.height);B=o.getImageData(0,0,a.width,a.height);try{performance&&performance.memory&&performance.memory.totalJSHeapSize&&
-    (t=3)}catch(G){}h=document.createElement("div");h.style.backgroundColor="rgb("+Math.floor(b.mb.bg.r/2)+","+Math.floor(b.mb.bg.g/2)+","+Math.floor(b.mb.bg.b/2)+")";h.style.padding="2px 0px 3px 0px";h.style.display="none";g.appendChild(h);i=document.createElement("div");i.style.fontFamily="Helvetica, Arial, sans-serif";i.style.textAlign="left";i.style.fontSize="9px";i.style.color="rgb("+b.mb.fg.r+","+b.mb.fg.g+","+b.mb.fg.b+")";i.style.margin="0px 0px 1px 3px";i.innerHTML='<span style="font-weight:bold">MB</span>';
-    h.appendChild(i);a=document.createElement("canvas");a.width=74;a.height=30;a.style.display="block";a.style.marginLeft="3px";h.appendChild(a);q=a.getContext("2d");q.fillStyle="#301010";q.fillRect(0,0,a.width,a.height);E=q.getImageData(0,0,a.width,a.height);return{domElement:g,update:function(){u++;j=(new Date).getTime();n=j-F;z=Math.min(z,n);A=Math.max(A,n);s(B.data,Math.min(30,30-n/200*30),"ms");c.innerHTML='<span style="font-weight:bold">'+n+" MS</span> ("+z+"-"+A+")";o.putImageData(B,0,0);F=j;if(j>
-    v+1E3){l=Math.round(u*1E3/(j-v));w=Math.min(w,l);x=Math.max(x,l);s(y.data,Math.min(30,30-l/100*30),"fps");d.innerHTML='<span style="font-weight:bold">'+l+" FPS</span> ("+w+"-"+x+")";m.putImageData(y,0,0);if(t==3)p=performance.memory.usedJSHeapSize*9.54E-7,C=Math.min(C,p),D=Math.max(D,p),s(E.data,Math.min(30,30-p/2),"mb"),i.innerHTML='<span style="font-weight:bold">'+Math.round(p)+" MB</span> ("+Math.round(C)+"-"+Math.round(D)+")",q.putImageData(E,0,0);v=j;u=0}}}};
-    
+
+function topWall(obj) {
+    return obj.y;
+}
+function bottomWall(obj) {
+    return obj.y + obj.height;
+}
+function leftWall(obj) {
+    return obj.x;
+}
+function rightWall(obj) {
+    return obj.x + obj.width;
+}
+
+// DINOSAUR
+function Dinosaur (x, dividerY) {
+    this.width = 55;
+    this.height = 70;
+    this.x = x;
+    this.y = dividerY - this.height;
+    this.vy = 0;
+    this.jumpVelocity = -20;
+}
+Dinosaur.prototype.draw = function(context) {
+    var oldFill = context.fillStyle;
+    context.fillStyle = "yellow";
+    context.fillRect(this.x, this.y, this.width, this.height);
+    context.fillStyle = oldFill;
+};
+Dinosaur.prototype.jump = function() {
+    console.log("Jump called");
+    this.vy = this.jumpVelocity;
+};
+Dinosaur.prototype.update = function(divider, gravity) {
+    this.y += this.vy;
+    this.vy += gravity;
+    if (bottomWall(this) > topWall(divider) && this.vy > 0) {
+        this.y = topWall(divider) - this.height;
+        this.vy = 0;
+        return;
+    }
+};
+// ----------
+// DIVIDER
+function Divider (gameWidth, gameHeight) {
+    this.width = gameWidth;
+    this.height = 4;
+    this.x = 0;
+    this.y = gameHeight - this.height - Math.floor(0.2 * gameHeight);
+}
+Divider.prototype.draw = function(context) {
+    context.fillRect(this.x, this.y, this.width, this.height);
+};
+// ----------
+
+// ----------
+// CACTUS
+function Cactus(gameWidth, groundY){
+    this.width = 16;    //fixed width cactus
+    this.height = (Math.random() > 0.5) ? 30 : 70// two different cactus
+    this.x = gameWidth;
+
+        this.x = gameWidth;// spawn cactus at screen end
+        this.y = groundY - this.height;
+}
+
+Cactus.prototype.draw = function(context){
+    var oldFill = context.fillStyle;
+    context.fillStyle = "green";
+    context.fillRect(this.x, this.y, this.width, this.height);
+    context.fillStyle = oldFill;
+};
+
+// ----------
+// GAME
+function Game () {
+    var canvas = document.getElementById("game");
+    this.width = canvas.width;
+    this.height = canvas.height;
+    this.context = canvas.getContext("2d");
+    this.context.fillStyle = "brown";
+    document.spacePressed = false;
+    document.addEventListener("keydown", function(e) {
+        if (e.key === " ") this.spacePressed = true;
+    });
+    document.addEventListener("keyup", function(e) {
+        if (e.key === " ") this.spacePressed = false;
+    });
+    this.gravity = 1.5;
+    this.divider = new Divider(this.width, this.height);
+    this.dino = new Dinosaur(Math.floor(0.1 * this.width), this.divider.y);
+    this.cacti = [];
+
+    this.runSpeed = -10;
+    this.paused = false;
+    this.noOfFrames = 0;
+}
+
+Game.prototype.spawnCactus = function(probability)
+    //Spawns a new cactus depending upon the probability
+    {
+    if(Math.random() <= probability){
+        this.cacti.push(new Cactus(this.width, this.divider.y));
+    }
+}
+
+Game.prototype.update = function () {
+    // Dinosaur jump start
+
+    if(this.paused){
+        return;
+    }
+    if (document.spacePressed == true && bottomWall(this.dino) >= topWall(this.divider)) {
+        console.log("Conditions met");
+        this.dino.jump();
+    }
+    this.dino.update(this.divider, this.gravity);
+
+    // Removing old cacti that cross the eft border of the screen
+    if(this.cacti.length > 0 && rightWall(this.cacti[0]) < 0) {
+        this.cacti.shift();
+    }
+
+    // Spawning new cacti
+    //Case 1: There are no cacti on the screen
+    if(this.cacti.length == 0){
+        //Spawn a cactus with high probability
+        this.spawnCactus(0.5);
+    }
+    //Case 2: There is atleast one cactus
+    else if ( 
+        this.cacti.length > 0 && this.width - leftWall(this.cacti[this.cacti.length-1]) > this.jumpDistance + 150)
+    {
+        this.spawnCactus(0.05);
+    } 
+
+    // Moving the cacti
+    for (i = 0; i < this.cacti.length; i++){
+        this.cacti[i].x += this.runSpeed;
+    }
+
+    //Collision Detection
+
+    for(i = 0; i < this.cacti.length; i++){
+        if(
+            rightWall(this.dino) >= leftWall(this.cacti[i])
+            && leftWall(this.dino) <= rightWall(this.cacti[i]) && bottomWall(this.dino) >= topWall(this.cacti[i]))
+            {
+                // COLLISION OCCURED
+                this.paused = true;
+            }
+            this.noOfFrames++;
+            this.score = Math.floor(this.noOfFrames/10);
+    }
+
+    //Jump Distance of the Dinosaur
+    // This is a CONSTANT in this gamebecause run speed is constant
+    //Equations: time = t * 2 * v / g where v is the jump velocity
+    // Horizontal ditance s = vx * t where vx is the run speed
+    this.jumpDistance = Math.floor(this.runSpeed * (2 * this.dino.jumpVelocity) / this.gravity);
+    // Math.floor() because we only use integer value.
+};
+Game.prototype.draw = function () {
+    // clear rectangle of game
+    this.context.clearRect(0, 0, this.width, this.height);
+    // draw divider line
+    this.divider.draw(this.context);
+    // draw the dinosaur
+    this.dino.draw(this.context);
+    //drawing the cactii
+    for (i = 0; i < this.cacti.length; i++){
+        this.cacti[i].draw(this.context);
+    }
+
+    var oldFill = this.context.fillStyle;
+    this.context.fillStyle = "white";
+    this.context.fillText(this.score, this.width-40, 30);
+    this.context.fillStyle = oldFill;
+};
+
+var game = new Game();
+function main (timeStamp) {
+    game.update();
+    game.draw();
+    window.requestAnimationFrame(main);
+}
+var startGame = window.requestAnimationFrame(main);
