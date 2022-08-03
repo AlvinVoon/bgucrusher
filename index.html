@@ -1,13 +1,24 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Chrome Dinosaur Game</title>
-        <link rel="stylesheet" href="index.css">
-    </head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fish Sim</title>
+    <link rel="stylesheet" href="index.css">
+</head>
 <body>
-    <canvas id="game" height="400" width="800">
-    </canvas>
-    <script src="index.js"></script>
+  <div class="parent">
+    <div class="background">
+      <img src="forest_bg.jpg">
+    </div>
+    <div class="background">
+      <img src="forest_bg.jpg">
+    </div>
+          <div id="character" onclick="change()">
+            <img src="seed.png" id="seed" width="80px" height="80px"/>
+            <img src="tree.png" id="tree" width="10%" height="auto"/>
+          </div>
+    </div>
+  </div>
 </body>
+<script src="index.js"></script>
 </html>
