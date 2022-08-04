@@ -30,9 +30,18 @@
       iconSize:[105,45],
       iconAnchor:[30,0],
     })
+
+    var muluparkIcon=L.icon({
+      iconUrl:'https://mulupark.com/wp-content/uploads/logo.png',
+      iconSize:[50,50],
+      iconAnchor:[27,0],
+    })
     var marker=L.marker([1.54672, 110.34728], {icon:projectBorneoIcon}).addTo(map);
+    var marker2=L.marker([4.098729, 114.893310], {icon:muluparkIcon}).addTo(map);
+    
 
     marker.bindPopup("<b>Project Borneo</b>").openPopup()
+    marker2.bindPopup("<b>Gunung Mulu National Park</b>").openPopup()
   </script>
 </body>
 </html>
