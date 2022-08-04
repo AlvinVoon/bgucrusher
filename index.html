@@ -24,7 +24,14 @@
     L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=3OMUWndftRFywjZ1Vzj9',{
       attribution:'<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
     }).addTo(map);
-    var marker=L.marker([1.54672, 110.34728]).addTo(map);
+
+    var projectBorneoIcon=L.icon({
+      iconUrl:'https://static.wixstatic.com/media/1aafa3_cecec50151044a5f956027104bc6118a~mv2.png/v1/fill/w_287,h_120,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/project_borneo_2020_landscape_logo.png',
+      iconSize:[105,45],
+      iconAnchor:[30,0],
+    })
+    var marker=L.marker([1.54672, 110.34728], {icon:projectBorneoIcon}).addTo(map);
+
     marker.bindPopup("<b>Project Borneo</b>").openPopup()
   </script>
 </body>
