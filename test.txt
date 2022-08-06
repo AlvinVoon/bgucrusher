@@ -174,3 +174,212 @@ initComparisons();
 
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #map{
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+  </style>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
+</head>
+<body>
+  <div id="map"></div>
+  <script>
+    var map=L.map('map').setView([4.39393,113.98602], 7);
+    L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=3OMUWndftRFywjZ1Vzj9',{
+      attribution:'<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
+    }).addTo(map);
+
+    var projectBorneoIcon=L.icon({
+      iconUrl:'https://static.wixstatic.com/media/1aafa3_cecec50151044a5f956027104bc6118a~mv2.png/v1/fill/w_287,h_120,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/project_borneo_2020_landscape_logo.png',
+      iconSize:[105,45],
+      iconAnchor:[30,0],
+    })
+
+    var muluparkIcon=L.icon({
+      iconUrl:'https://mulupark.com/wp-content/uploads/logo.png',
+      iconSize:[50,50],
+      iconAnchor:[27,0],
+    })
+    var marker=L.marker([1.54672, 110.34728], {icon:projectBorneoIcon}).addTo(map);
+    var marker2=L.marker([4.098729, 114.893310], {icon:muluparkIcon}).addTo(map);
+    
+
+    marker.bindPopup("<b>Project Borneo</b>").openPopup()
+    marker2.bindPopup("<b>Gunung Mulu National Park</b>").openPopup()
+  </script>
+</body>
+</html>
+
+* {box-sizing: border-box;}
+
+.img-comp-container {
+  position: relative;
+  height: 200px; /*should be the same height as the images*/
+}
+
+.img-comp-img {
+  position: absolute;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+}
+
+.img-comp-img img {
+  display: block;
+}
+
+.img-comp-slider {
+  position: absolute;
+  z-index: 9;
+  cursor: ew-resize;
+  /*set the appearance of the slider:*/
+  width: 40px;
+  height: 40px;
+  background-color: #2196F3;
+  opacity: 0.7;
+  border-radius: 50%;
+}
+
+
+  <div>
+    <img src="45b204b2a3009db3c3816ddad94c92-unscreen.gif" id="bird"/>
+  </div>
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div id="container">
+    <h1 id="main">Hello world</h1>
+  <img src="r-2057136-hYzGD-1396810502-unscreen-0-removebg-preview.png" id="waterpot" onclick="watertheplant()"/>
+  <img src="2efb90c0b69884f2a69e67bdf4d6bf-unscreen-0.png" id="plant"/>
+  <img src="cloud.png" width="300px" height="200px" id="cloud" onclick="cloudsiapper()"/>
+  <img src="image-removebg-preview (1).png" width="200px" height="200px" id="sun"/>
+  </div>
+
+  <script>
+    let day=1;
+    let amounttime=0;
+    let watered=false;
+    let state=0;
+    document.getElementById('cloud').style.opacity=0
+
+    function randomcloud(){
+      document.getElementById('main').textContent="Too Much Cloud! Careful!"
+      document.getElementById('cloud').style.opacity=1
+
+    }
+
+    function cloudsiapper(){
+      document.getElementById('main').textContent="Day"
+      document.getElementById('cloud').style.opacity=0
+      cloudtime=0
+    }
+
+    setInterval(randomcloud, Math.floor(Math.random() * 3000)+1000)
+
+
+    function amounttimeg(){
+      document.getElementById('plant').src="2efb90c0b69884f2a69e67bdf4d6bf-unscreen-"+state+".png"
+      console.log(watered)
+      amounttime+=0.1;
+      console.log(amounttime)
+      if(watered==true){
+        amounttime=0;
+      }
+      if(amounttime>1.5 && amounttime<1.55){
+        console.log("mati")
+        day+=1
+      document.getElementById('day').textContent=day;
+      }
+
+    }
+    function watertheplant(){
+      if(amounttime<0.5){
+        console.log("mati")
+      }else{
+        state+=1
+
+      watered=true;
+      console.log('clicked')
+      document.getElementById("waterpot").style.transform = "rotate(0deg)"
+      document.getElementById("waterpot").style.transform = "translate(220px, -80px)"
+      document.getElementById('waterpot').src='r-2057136-hYzGD-1396810502-unscreen.gif'
+
+      setTimeout(stopwater, 2000)
+
+      function stopwater(){
+        watered=false;
+        console.log("Sotp")
+        document.getElementById("waterpot").style.transform = "rotate(-20deg)"
+      document.getElementById("waterpot").style.transform = "translate(-50px, --50px)"
+        document.getElementById('waterpot').src='r-2057136-hYzGD-1396810502-unscreen-0-removebg-preview.png'
+      }
+    }
+    }
+
+    setInterval(amounttimeg,500)
+
+  </script>
+</body>
+</html>
+
+#waterpot{
+  transform: rotate(-20deg);
+}
+
+#bird{
+    transform: translate(-100px, -1000px);
+}
+
+#bottle1{
+  position: absolute;
+}
+
+#plant{
+  position: absolute;
+}
+
+#sun{
+  position: absolute;
+  margin-top: -130px;
+  margin-left: 200px;
+}
+
+#container{
+  width: 500px;
+  height: 500px;
+  position: relative;
+}
+
+#cloud{
+  position: absolute;
+  margin-top: -125px;
+  margin-left: 160px;
+  z-index: 5;
+}
+
+#main{
+  position: absolute;
+  margin-left: 250px;
+  margin-top: -100px;
+}

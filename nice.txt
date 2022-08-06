@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Document</title>
+</head>
+<body>
+    <div class="rellax" data-rellax-speed="2">
+      <img src="ground.png"/>
+     </div>
+     <div class="rellax" data-rellax-speed="2">
+      <img src="sky..png"/>
+     </div>
+     <div class="rellax" data-rellax-speed="4">
+      <img src="tree(gg).png"/>
+     </div>
+
+  <div class="rellax" data-rellax-speed="10">
+    <div class="fire"><img src="Fire AE Project File FREE-0.jpg" id="fire" /></div>
+    </div>
+
+  <script src="https://cdn.jsdelivr.net/gh/dixonandmoe/rellax@master/rellax.min.js"></script>
+  <script>
+    window.addEventListener("scroll", (event) => {
+  let scroll2=1
+  scroll2=Math.round(((this.scrollY)/100));
+  console.log(scroll2)
+  if(scroll2 < 30)
+  {
+      document.getElementById('fire').src='Fire-AE-Project-File-Free-unscreen-'+scroll2+'.png'
+  }
+
+});
+
+var rellax=new Rellax('.rellax');
+  </script>
+</body>
+</html>

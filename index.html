@@ -30,18 +30,27 @@
       iconSize:[105,45],
       iconAnchor:[30,0],
     })
+    var trash_hero=L.icon({
+      iconUrl:'https://scontent.fkch1-2.fna.fbcdn.net/v/t31.18172-8/20545255_120459505260199_8808942746382831173_o.jpg?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=wBdrP6cjWlwAX-bc2vl&_nc_ht=scontent.fkch1-2.fna&oh=00_AT83dj2M5RZmNo7QI6eQZwTP0yiFP90goUNtAvzjbVjB3g&oe=6312E317',
+      iconSize:[45,45],
+      iconAnchor:[30,0],
+    })
+
 
     var muluparkIcon=L.icon({
       iconUrl:'https://mulupark.com/wp-content/uploads/logo.png',
       iconSize:[50,50],
       iconAnchor:[27,0],
     })
+
     var marker=L.marker([1.54672, 110.34728], {icon:projectBorneoIcon}).addTo(map);
     var marker2=L.marker([4.098729, 114.893310], {icon:muluparkIcon}).addTo(map);
+    var marker3=L.marker([2.60729, 117.893310], {icon:trash_hero}).addTo(map);
     
 
     marker.bindPopup("<b>Project Borneo</b>").openPopup()
     marker2.bindPopup("<b>Gunung Mulu National Park</b>").openPopup()
+    marker3.bindPopup("<b>Trash Hero Malaysia</b>").openPopup()
   </script>
 </body>
 </html>
